@@ -236,6 +236,7 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 	if (navigator.userAgent.toLowerCase().indexOf(' electron/') > -1) {
 		try {
 			//getById("electronDragZone").style.cursor="grab";
+			//getById("header").style.height = "max(calc(2% + 20px), 40px)";
 			if (!ipcRenderer){
 				ipcRenderer = require('electron').ipcRenderer;
 			}
@@ -703,14 +704,20 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		session.meshcastCode = urlParams.get('meshcastcode') ||  urlParams.get('mccode')  || false
 	}
 	
-	if (urlParams.has('nomeshcast')) {
-		session.noMeshcast = urlParams.get('nomeshcast') || true;
+	if (urlParams.has('nomeshcast') || urlParams.has('nowhep')) {
+		session.noMeshcast = urlParams.get('nomeshcast') || urlParams.has('nowhep') ||  true;
 	}
 	
-	
+	if (urlParams.has('chunkcast')) {
+		session.chunkcast = true;
+	}
 	//if (urlParams.has('callin')){
 		// awaitInboundCall()();
 	//}
+	
+	if (urlParams.has('relaywss')) {
+		session.relaywss = true; // do not use; this is not completed yet and mainly for debugging at this point.
+	}
 	
 	if (urlParams.has('fulltalk') && (urlParams.get('fulltalk').length==6)){
 		listenWebsocket(urlParams.get('fulltalk'), false); // talk and hear all
@@ -852,8 +859,16 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		session.motionRecord = parseInt(urlParams.get('motionrecord')) || parseInt(urlParams.get('recordmotion')) || 15; // threshold of motion needed to trigger
 	}
 	
-	
-
+	if (urlParams.has('pausepreview') || urlParams.has('dpp')) {
+		try {
+			session.directorViewBitrate = 0;
+			document.querySelector('#controls_blank button[data-action-type="change-quality1"]').classList.add("pressed");
+			document.querySelector('#controls_blank button[data-action-type="change-quality2"]').classList.remove("pressed");
+			document.querySelector('#controls_blank button[data-action-type="change-quality3"]').classList.remove("pressed");
+		} catch(e){
+			errorlog(e);
+		}
+	}
 	if (urlParams.has('locked')) {
 		session.locked = urlParams.get('locked');
 
@@ -1196,6 +1211,8 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		session.viewslot = parseInt(urlParams.get('viewslot')) || false;
 		session.accept_layouts = true;
 		session.layout = {};
+		session.exclusiveLayoutAudio = true;
+		session.hiddenSceneViewBitrate = 0;
 	} else if (urlParams.has('layout')) {
 		
 		if (!urlParams.get('layout')){
@@ -1211,6 +1228,12 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 			}
 		}
 		console.warn("Warning: If using &layout with &broadcast, only the director's video will appear in the custom layout, which is likely not intended.");
+	}
+	
+	if (urlParams.get('exclusivelayoutaudio')){
+		session.exclusiveLayoutAudio = true;
+	} else if (urlParams.get('inclusivelayoutaudio')){
+		session.exclusiveLayoutAudio = false;
 	}
 	
 	if (urlParams.has('layouts')) { // an ordered array of layouts, which can be used to switch between using the API layouts action.
@@ -1915,7 +1938,7 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		session.labelsize = urlParams.get('sizelabel') || urlParams.get('labelsize') || urlParams.get('fontsize') || 100;
 		session.labelsize = parseInt(session.labelsize);
 	}
-		
+	
 	if (urlParams.has('label') || urlParams.has('l')) {
 		session.label = urlParams.get('label') || urlParams.get('l') || null;
 		var updateURLAsNeed = true;
@@ -2394,7 +2417,7 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		session.ruleOfThirds = decodeURIComponent(session.ruleOfThirds);
 	}
 	
-	if (urlParams.has('smallshare')){
+	if (urlParams.has('smallshare') || urlParams.has('smallscreen')){
 		session.notifyScreenShare = false;
 	}
 	
@@ -3297,6 +3320,9 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		if (session.codecGroupFlag){
 			session.codecGroupFlag = "&codec="+session.codecGroupFlag.toLowerCase();
 		}
+	}
+	if (session.codecGroupFlag){
+		getById("codecGroupFlag").disabled = true;
 	}
 	if (urlParams.has('scenelinkbitrate')){  // this is mainly for a niche iframe API use
 		log("bitrateGroupFlag CHANGED");
@@ -4833,7 +4859,7 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 			getById("container-3").classList.remove('pointer');
 			delayedStartupFuncs.push([previewWebcam]);
 		}
-	}
+	} 
 	if (session.introOnClean && (session.permaid===false) && (session.roomid===false)){ 
 		//getById("container-2").className = 'column columnfade hidden'; // Hide screen share
 		getById("head3").classList.add('hidden');
@@ -5372,6 +5398,17 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		} catch (e) {
 			errorlog(e);
 		};
+	} else {
+		try {
+			let reloadOldRoom = getStorage("directorOtherSettings");
+			if (reloadOldRoom && reloadOldRoom.roomid){
+				getById("lastSavedRoomName").innerText = reloadOldRoom.roomid;
+				getById("lastSavedRoom").classList.remove('hidden');
+				getById("goToLastSavedRoom").onclick = function(){createRoom(false,true);};
+			}
+		} catch(e){
+			errorlog(e);
+		}
 	}
 	
 	hideHomeCheck();
@@ -5449,7 +5486,9 @@ async function main(){ // main asyncronous thread; mostly initializes the user s
 		} catch(e){}
 	} else {
 		try {
-			navigator.mediaDevices.ondevicechange = reconnectDevices;
+			if (navigator && navigator.mediaDevices && navigator.mediaDevices.ondevicechange){
+					navigator.mediaDevices.ondevicechange = reconnectDevices;
+			}
 		} catch (e) {
 			errorlog(e);
 		}
