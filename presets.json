@@ -5,6 +5,6 @@
 "versus": "remote&label&quality&maxbandwidth&view&proaudio",
 "red": "https://live.studiovox.it/?r=studiovox&hash=7ed3&tips&controls=0&audiocodec=red&oab=128&al=20&audiohint=music&codec=vp9&mvb=600&ag=0&ec=0&dn=0&q=2&hidetranslate&np&cb=0&hidehome&bc&hh&clear&showlist=1&ac=1&l=red&sl&hand&vd=0&np",
 "studio": "?dir=studiovox&password=1234567890&sd&q=1&audiocodec=opus&oab=48&al=20&ac=1&ls=StudioVOX&ag=0&ec=0&dn=0&codec=vp9&fr=25&mvb=1200&noscaling&hint=motion",
-"client":  "?r=studiovox&hash=7ed3&tips&controls=0&audiocodec=opus&oab=16&codec=vp9&nvb&ls=client&al=20&ac=1&np=0&hidehome&hh&showlist=1&ec=1&dn=1&wc=1&lc=100&clear&miconly",
+"client":  "?r=studiovox&hash=7ed3&tips&controls=0&audiocodec=opus&oab=16&codec=vp9&nvb&bc&ls=client&al=20&ac=1&np=0&hidehome&hh&showlist=1&ec=1&dn=1&wc=1&lc=100&clear&miconly",
 "speaker": "?r=studiovox&hash=7ed3&tips&controls=0&audiocodec=red&oab=128&al=20&audiohint=music&codec=vp9&mvb=600&ag=0&ec=0&dn=0&q=2&hidetranslate&np&cb=0&hidehome&bc&hh&clear&showlist=0&ac=1&l=Speaker&wc&miconly"
 }
