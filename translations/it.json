@@ -706,6 +706,8 @@
     "accept-inbound-caller": "Accept the inbound telephone caller?",
     "cycle-between-audio-visualizations": "Cambia tipo di visualizzazione audio",
     "enable": "Abilita",
+    "hold-to-talk": "Funzione - premi un tasto per parlare",
+    "clear": "Disabilita",
     "cleaer-sites-local-storage": "Elimina I settaggi salvati in locale"
   }
 }
