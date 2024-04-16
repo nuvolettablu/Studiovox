@@ -184,7 +184,7 @@
     "activate-or-reload-this-video-device-": "Attiva o Ricarica questo dispositivo video.",
     "face-detection-api-not-detected-you-may-be-able-to-enable-it-here-chrome-flags-enable-experimental-web-platform-features": "Face Detection API not detected; you may be able to enable it here: chrome://flags/#enable-experimental-web-platform-features",
     "the-solo-view-link-of-the-director-s-video-": "The solo view link of the Director's video.",
-    "choose-a-hotkey-for-hold-to-talk-if-using-electron-capture-elevate-privilleges-to-have-it-become-global": "Choose a hotkey for Hold-to-Talk. If using Electron Capture, elevate privilleges to have it become global",
+    "choose-a-hotkey-for-hold-to-talk-if-using-electron-capture-elevate-privilleges-to-have-it-become-global": "Scegli un tasto per la funzione Hold-to-Talk.",
     "draw-on-the-screen": "Funzione disegna sullo schermo",
     "ctrl-cmd-alt-d-to-toggle": "CTRL (cmd) + ALT + D to toggle",
     "audio-only-sources-can-be-stylized-in-different-ways": "Audio-only sources can be stylized in different ways",
