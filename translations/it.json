@@ -703,6 +703,8 @@
     "enter-password-if-desired": "Enter a password if provided, otherwise just click Cancel",
     "your-screenshare": "Your screenshare",
     "your-camera": "Your camera",
-    "accept-inbound-caller": "Accept the inbound telephone caller?"
+    "accept-inbound-caller": "Accept the inbound telephone caller?",
+    "cycle-between-audio-visualizations": "Cambia tipo di visualizzazione audio",
+    "cleaer-sites-local-storage": "Elimina I settaggi salvati in locale"
   }
 }
