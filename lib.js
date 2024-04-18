@@ -6737,6 +6737,16 @@ async function changeLg(lang) {
 		try{
 			if (response.status !== 200) {
 				getById("mainmenu").style.opacity = 1;
+				
+					if (retry) {
+					console.warn("Couldn't find the exact language file for '" + lang + "'; trying a more generic option instead");
+					lang = lang.split('-')[0];
+					if (lang && (lang !== "auto")) {
+						await changeLg(lang); // Retry with a more generic language code.
+					}
+				}
+
+				
 				return;
 			}
 			await response.json().then(async function(data) {
