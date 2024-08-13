@@ -69,7 +69,7 @@ var miscTranslations = { // i can replace this list from time to time from the g
     "director-redirect-2": "\n\nPress OK to be redirected.",
     "add-a-label": "Add a label",
     "audio-processing-disabled": "Audio processing is disabled with this guest. Can't mute or change volume",
-    "not-the-director": "<span color='red'>You are not the director of this room. You will have limited to no control. See <a target='_blank' href='https://docs.vdo.ninja/director-settings/codirector'>&codirector</a> on how to become a co-director.</span>",
+    "not-the-director": "<span color='red'>You are not the director of this room. You will have limited to no control.</span>",
     "room-is-claimed": "The room is already claimed by someone else.\n\nOnly the first person to join a room is the assigned director.\n\nRefresh after the first director leaves to claim.",
     "token-room-is-claimed": "The room is claimed by someone else.\n\nJoin as a guest or co-director instead.",
     "room-is-claimed-codirector": "The room is already claimed by someone else.\n\nTrying to join as a co-director...",
@@ -137,14 +137,14 @@ var miscTranslations = { // i can replace this list from time to time from the g
     "confirm-reload-user": "Are you sure you wish to reload this user's browser?",
     "webrtc-is-blocked": "⚠ This browser has either blocked WebRTC or does not support it.\n\nThis site will not work without it.\n\nDisable any browser extensions or privacy settings that may be blocking WebRTC, or try a different browser.",
     "not-clean-session": "Video effects or canvas rendering failed.\n\nCheck to ensure any remotely hosted images are cross-origin allowed.",
-    "ios-no-screen-share": "Sorry, but your iOS browser does not support screen-sharing.\n\nPlease see <a href='https://docs.vdo.ninja/guides/screen-share-your-iphone-ipad' target='_blank'>this guide</a> for an alternative method to do so.",
-    "android-no-screen-share": "Sorry, your mobile browser does not support screen-sharing.\n\nThe <a href='https://docs.vdo.ninja/getting-started/native-mobile-app-versions' target='_blank'>Android native app</a> does offer basic support for it though.",
+    "ios-no-screen-share": "Sorry, but your iOS browser does not support screen-sharing.\n\n.",
+    "android-no-screen-share": "Sorry, your mobile browser does not support screen-sharing.\n\n",
     "no-screen-share-supported": "Sorry, your browser does not support screen-sharing.\n\nPlease use the desktop versions of Firefox or Chrome instead.",
     "speech-not-suppoted": "⚠ Speech Recognition is not supported by this browser",
     "blue-yeti-tip": "<i>Tip:</i> Blue Yeti microphones may experience issues being overly loud. <a href='https://support.google.com/chrome/thread/7542181?hl=en&msgid=79691143'>Please see here</a> for a solution or disable auto-gain in VDO.Ninja.",
 	"sample-rate-too-high": "Your audio playback device has its sample rate set very high. If having audio issues, try using 48-kHz instead.",
     "site-not-responsive": "<h3>Notice: The system cannot be accessed or is currently slow to respond.</h3>\nIf a routing issue, try adding <i title='or try visiting https://proxy.vdo.ninja/'>&proxy</i> to the URL; you can also try <i>https://proxy.vdo.ninja</i> or a VPN if the service is blocked in your country.\n\nIf the main service is down, a backup version is also available here: <i>https://backup.vdo.ninja</i>\n\nContact steve@seguin.email for added help.\n\nThis service requires the use of Websockets over port 443.",
-    "no-audio-source-detected": "No Audio Source was detected.\n\nIf you were wanting to capture an Application's Audio, please see:\nhttps://docs.vdo.ninja/help/guides-and-how-tos#audio for some guides.",
+    "no-audio-source-detected": "No Audio Source was detected.\n\nIf you were wanting to capture an Application's Audio",
     "viewer-count": "Total outbound p2p connections of this remote stream",
     "enter-url-for-widget": "Enter a URL for a page to embed as a sidebar",
     "director-password": "Enter the main director's password",
@@ -11573,7 +11573,7 @@ function printMyStats(menu, screenshare=false) { // see: setupStatsMenu
 				menu.innerHTML += "<li><span title='Only available if not in a group room'>adjust video bitrate</span><span><input class='thinSlider' title='Adjust the outbound bitrate for this stream.' type='range' value='"+(session.pcs[UUID].savedBitrate || session.pcs[UUID].setBitrate || 2500)+"' min='0' max='"+(session.pcs[UUID].setBitrate || 6000)+"' onchange='session.limitBitrate(\""+UUID+"\", parseInt(this.value));' /></span></li>";
 				
 				if (!session.hidehome ){
-					menu.innerHTML += "<center><a target='_blank' href='https://docs.vdo.ninja/guides/how-do-i-control-bitrate-quality'>More info on setting bitrates higher here</a></center>";
+					menu.innerHTML += "<center><a target='_blank' href=''>More info on setting bitrates higher here</a></center>";
 				}
 			}
 			
@@ -26733,9 +26733,9 @@ async function publishScreen2(constraints, audioList=[], audio=true, overrideFra
 	if (!navigator.mediaDevices.getDisplayMedia){
 		setTimeout(function(){
 			if (iOS || iPad){
-				warnUser("Sorry, but your iOS browser does not support screen-sharing.\n\nPlease see <a href='https://docs.vdo.ninja/guides/screen-share-your-iphone-ipad' target='_blank'>this guide</a> for an alternative method to do so.", false, false);
+				warnUser("Sorry, but your iOS browser does not support screen-sharing.\n\n", false, false);
 			} else if (session.mobile){
-				warnUser("Sorry, your browser does not support screen-sharing.\n\nThe <a href='https://docs.vdo.ninja/getting-started/native-mobile-app-versions#android-download-link' target='_blank'>Android native app</a> should support it though.", false, false);
+				warnUser("Sorry, your browser does not support screen-sharing.\n\n", false, false);
 			} else {
 				warnUser("Sorry, your browser does not support screen-sharing.\n\nPlease use the desktop versions of Firefox or Chrome instead.");
 			}
@@ -32257,16 +32257,15 @@ async function requestBasicPermissions(constraint = {video: true, audio: true}, 
 					if (!(session.cleanOutput)) {
 						setTimeout(function() {
 							if (window.obsstudio){
-								warnUser("Permissions denied.\n\nTo access the camera or microphone from within OBS, please refer to:\n<a href='https://docs.vdo.ninja/guides/share-webcam-from-inside-obs'>docs.vdo.ninja/guides/share-webcam-from-inside-obs</a>.", false, false);
+								warnUser("Permissions denied.\n\n.", false, false);
 							} else if (ChromiumVersion && !session.mobile){
-								warnUser("<h1>Camera/mic permissions denied</h1>\nPlease ensure you have allowed the mic/camera permissions in your browser, such as like:\n\n<img src='./media/permissions_chrome.jpg' style='max-height:50vh;' />\n\nFor further help on how to resolve this issue, please refer to:\n\n<a target='_blank' href='https://docs.vdo.ninja/common-errors-and-known-issues/enable-camera-microphone-permissions'>https://docs.vdo.ninja/common-errors-and-known-issues/enable-camera-microphone-permissions</a>.", false, false);
+								warnUser("<h1>Camera/mic permissions denied</h1>\nPlease ensure you have allowed the mic/camera permissions in your browser, such as like:\n\n<img src='./media/permissions_chrome.jpg' style='max-height:50vh;' />\n\n", false, false);
 							} else if (Firefox && session.mobile){
 								warnUser("<h3>Camera/mic permission denied</h3>\nPlease allow mic/camera access.\n\n\
 								If not prompted, go to Settings -> Site permissions -> exceptions (at bottom) -> vdo.ninja, and then manually enable the permissions.\n\n\
-								If Firefox still gives you issues, try in incognito mode or a different browser.\
-								For further help, please refer to:\n\n<a target='_blank' href='https://docs.vdo.ninja/common-errors-and-known-issues/enable-camera-microphone-permissions'>https://docs.vdo.ninja/common-errors-and-known-issues/enable-camera-microphone-permissions</a>.", false, false);
+								If Firefox still gives you issues, try in incognito mode or a different browser.", false, false);
 							} else {
-								warnUser("Permission access to the camera or microphone was denied.\n\nPlease ensure you have allowed the mic/camera permissions in your browser.\n\nFor guides on how to resolve this issue, please refer to:\n\n<a target='_blank' href='https://docs.vdo.ninja/common-errors-and-known-issues/enable-camera-microphone-permissions'>https://docs.vdo.ninja/common-errors-and-known-issues/enable-camera-microphone-permissions</a>.", false, false);
+								warnUser("Permission access to the camera or microphone was denied.\n\nPlease ensure you have allowed the mic/camera permissions in your browser.", false, false);
 							}
 						}, 1);
 					}
