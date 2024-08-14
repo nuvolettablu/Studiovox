@@ -1,5 +1,5 @@
 /*
-*  Copyright (c) 2024 Steve Seguin. All Rights Reserved.
+*  Copyright (c) 2024 Steve. All Rights Reserved.
 *
 *  Use of this source code is governed by the APGLv3 open-source license
 *  that can be found in the LICENSE file in the root of the source
@@ -64,7 +64,7 @@ var translation = false;
 var miscTranslations = { // i can replace this list from time to time from the generated one in blank.json using translate.js
 	"start": "START",
     "new-display-name": "Enter a new Display Name for this stream",
-    "submit-error-report": "Press OK to submit any error logs to VDO.Ninja. Error logs may contain private information.",
+    "submit-error-report": "Press OK to submit any error logs. Error logs may contain private information.",
     "director-redirect-1": "The director wishes to redirect you to the URL: ",
     "director-redirect-2": "\n\nPress OK to be redirected.",
     "add-a-label": "Add a label",
@@ -141,9 +141,9 @@ var miscTranslations = { // i can replace this list from time to time from the g
     "android-no-screen-share": "Sorry, your mobile browser does not support screen-sharing.\n\n",
     "no-screen-share-supported": "Sorry, your browser does not support screen-sharing.\n\nPlease use the desktop versions of Firefox or Chrome instead.",
     "speech-not-suppoted": "⚠ Speech Recognition is not supported by this browser",
-    "blue-yeti-tip": "<i>Tip:</i> Blue Yeti microphones may experience issues being overly loud. <a href='https://support.google.com/chrome/thread/7542181?hl=en&msgid=79691143'>Please see here</a> for a solution or disable auto-gain in VDO.Ninja.",
+    "blue-yeti-tip": "<i>Tip:</i> Blue Yeti microphones may experience issues being overly loud. <a href='https://support.google.com/chrome/thread/7542181?hl=en&msgid=79691143'>Please see here</a> for a solution or disable auto-gain.",
 	"sample-rate-too-high": "Your audio playback device has its sample rate set very high. If having audio issues, try using 48-kHz instead.",
-    "site-not-responsive": "<h3>Notice: The system cannot be accessed or is currently slow to respond.</h3>\nIf a routing issue, try adding <i title='or try visiting https://proxy.vdo.ninja/'>&proxy</i> to the URL; you can also try <i>https://proxy.vdo.ninja</i> or a VPN if the service is blocked in your country.\n\nIf the main service is down, a backup version is also available here: <i>https://backup.vdo.ninja</i>\n\nContact steve@seguin.email for added help.\n\nThis service requires the use of Websockets over port 443.",
+    "site-not-responsive": "<h3>Notice: The system cannot be accessed or is currently slow to respond.</h3>\nIf a routing issue, try adding <i title='or try visiting https://proxy/'>&proxy</i> to the URL; you can also try <i>https://proxy</i> or a VPN if the service is blocked in your country.\n\nIf the main service is down, a backup version is also available here: <i>https://backup</i>\n\nContact steve@.email for added help.\n\nThis service requires the use of Websockets over port 443.",
     "no-audio-source-detected": "No Audio Source was detected.\n\nIf you were wanting to capture an Application's Audio",
     "viewer-count": "Total outbound p2p connections of this remote stream",
     "enter-url-for-widget": "Enter a URL for a page to embed as a sidebar",
@@ -465,9 +465,9 @@ function submitDebugLog(msg=false){
 		var recordResults = session.streamID + "_"+parseInt(Date.now());
 		request.open('POST', "https://reports.vdo.ninja/?name="+recordResults);  //  php, well, whatever.
 		if (!session.cleanOutput){
-			warnUser("Report any details of your bug report to steve@seguin.email, along with the following link: <a target='_blank' onclick='copyFunction(this, event)' href='https://reports.vdo.ninja/?name="+recordResults+"'>https://reports.vdo.ninja/?name="+recordResults+"</a>", false, false);
+			warnUser("Report any details of your bug report to steve@.email, along with the following link: <a target='_blank' onclick='copyFunction(this, event)' href='https://reports/?name="+recordResults+"'>https://reports/?name="+recordResults+"</a>", false, false);
 		}
-		console.log("Report any details of your bug report to steve@seguin.email, along with the following ID: "+recordResults);
+		console.log("Report any details of your bug report to steve@.email, along with the following ID: "+recordResults);
 		
 		request.send(JSON.stringify(errorReport));
 		errorReport = [];
@@ -626,7 +626,7 @@ if (session.audioCtx && session.audioCtx.sampleRate && (session.audioCtx.sampleR
 }
 
 if (isVingester){
-	console.warn("If Vingester isn't able to capture audio, get a fixed version of Vingester from here: https://github.com/steveseguin/vingester/releases/");
+	console.warn("If Vingester isn't able to capture audio, get a fixed version of Vingester from here: https://github.com/vingester/releases/");
 }
 
 function isAlphaNumeric(str) {
@@ -1984,7 +1984,7 @@ function obsSourceActiveChanged(event){
 	} catch (e){errorlog(e);}
 }
 
-function obsSourceVisibleChanged(event){ // accounts for visible in VDO.Ninja scene AND visible in OBS scene
+function obsSourceVisibleChanged(event){ // accounts for visible in OBS scene
 	warnlog("obsSourceVisibleChanged");
 	warnlog(event.detail);
 	try {
@@ -8895,7 +8895,7 @@ function TFLiteWorker() {
 				
 				// THE BELOW BLUR CODE polyfil is by David Enke
 				// MIT License: Copyright (c) 2019
-				// https://github.com/steveseguin/context-filter-polyfill/blob/master/src/filters/blur.filter.ts
+				// https://github.com/context-filter-polyfill/blob/master/src/filters/blur.filter.ts
 				const wm = width - 1;
 				const hm = height - 1;
 				const rad1 = amount + 1;
@@ -17708,7 +17708,7 @@ function joinRoom(roomname) {
 							var invite = "https://"+location.host+location.pathname+"?room="+session.roomid+"&password=false"+token;
 							warnUser("You can invite others with:\n\n<a target='_blank' title='Copy this link to the clipboard' style='cursor:pointer' onclick='copyFunction(this.innerText,event);' href='"+invite+"'>"+invite+"</a>", false, false);
 						} else {
-							generateHash(session.password + session.salt, 4).then(function(hash) { // change the hash length from 4 to 3 when VDO.Ninja v24.10 or newer is in production.
+							generateHash(session.password + session.salt, 4).then(function(hash) { // change the hash length from 4 to 3 when v24.10 or newer is in production.
 								var invite = "https://"+location.host+location.pathname+"?room="+session.roomid+"&hash="+hash+token;
 								warnUser("You can invite others with:\n\n<a target='_blank' title='Copy this link to the clipboard' style='cursor:pointer' onclick='copyFunction(this.innerText,event)' href='"+invite+"'>"+invite+"</a>", false, false);
 							});
@@ -19992,7 +19992,7 @@ function addToGoogleCalendar(){
 	var title = "Live Stream";
 	//var dates = "20180512T230000Z/20180513T030000Z";
 	var linkout = getById("director_block_1").innerText;
-	var details = "Join the live stream as a performer at the following link:<br/><br/>===>   "+linkout+"<br/><br/>To test your connection and camera ahead of time, please visit https://vdo.ninja/speedtest<br/><br/>Do not share the details of this invite with others, unless explicitly told to.";
+	var details = "Join the live stream as a performer at the following link:<br/><br/>===>   "+linkout+"<br/><br/>To test your connection and camera ahead of time, please visit https://speedtest<br/><br/>Do not share the details of this invite with others, unless explicitly told to.";
 	details = details.split(' ').join('+');
 	details = details.split('&').join('%26');
 	var linkToOpen = "https://calendar.google.com/calendar/r/eventedit?text="+title+"&details="+details;
@@ -20005,7 +20005,7 @@ function addToGoogleCalendar(){
 function addToOutlookCalendar(){
 	var title = "Live Stream";
 	var linkout = getById("director_block_1").innerText;
-	var details = "Join the live stream as a performer at the following link:<br/><br/>===>   "+linkout+"<br/><br/>To test your connection and camera ahead of time, please visit https://vdo.ninja/speedtest<br/><br/>Do not share the details of this invite with others, unless explicitly told to.";
+	var details = "Join the live stream as a performer at the following link:<br/><br/>===>   "+linkout+"<br/><br/>To test your connection and camera ahead of time, please visit https://speedtest<br/><br/>Do not share the details of this invite with others, unless explicitly told to.";
 	details = details.split(' ').join('%20');
 	details = details.split('&').join('%26');
 	
@@ -20019,7 +20019,7 @@ function addToOutlookCalendar(){
 function addToYahooCalendar(){
 	var title = "Live Stream";
 	var linkout = getById("director_block_1").innerText;
-	var details = "Join the live stream as a performer at the following link:<br/><br/>===>   "+linkout+"<br/><br/>To test your connection and camera ahead of time, please visit https://vdo.ninja/speedtest<br/><br/>Do not share the details of this invite with others, unless explicitly told to.";
+	var details = "Join the live stream as a performer at the following link:<br/><br/>===>   "+linkout+"<br/><br/>To test your connection and camera ahead of time, please visit https://speedtest<br/><br/>Do not share the details of this invite with others, unless explicitly told to.";
 	details = details.split(' ').join('%20');
 	details = details.split('&').join('%26');
 	var linkToOpen = "https://calendar.yahoo.com?v60&title="+title+"&desc="+details;
@@ -36850,7 +36850,7 @@ function PCM16(stream){
 	  const buffer = new ArrayBuffer(bufferLength);
 	  const dataView = new DataView(buffer);
 	
-	// referenced from: https://github.com/steveseguin/audiobuffer-to-wav (by Jam3 - MIT lic) 
+	// referenced from: https://github.com/audiobuffer-to-wav (by Jam3 - MIT lic) 
 	  writeString(dataView, 0, 'RIFF');
 	  dataView.setUint32(4, 36 + samples.length * bytesPerSample, true);
 	  writeString(dataView, 8, 'WAVE');
@@ -40819,7 +40819,7 @@ function whipOut(){
 					console.warn("Mixed HTTP and HTTPS content; this may not work. There are some options, like using localhost, disabling web security in your browser, or using SSL entirely");
 					if (!session.cleanOutput){
 						if (window.location.hostname === "vdo.ninja"){
-							warnUser("Error: You cannot publish to an HTTP WHIP endpoint from an HTTPS-enabled website.\n\nThere are some possible exceptions and solutions, such as deploying an SSL certificate, hosting from localhost, trying from http://insecure.vdo.ninja, and/or using the Electron Capture app.");
+							warnUser("Error: You cannot publish to an HTTP WHIP endpoint from an HTTPS-enabled website.\n\nThere are some possible exceptions and solutions, such as deploying an SSL certificate, hosting from localhost, trying from http://insecure, and/or using the Electron Capture app.");
 						} else {
 							warnUser("Error: You cannot publish to an HTTP WHIP endpoint from an HTTPS-enabled website.");
 						}
