@@ -1070,7 +1070,7 @@
 						<li>OBS will see a guest's video in high-quality; the default video bitrate is 2500kbps. Setting higher bitrates will improve motion.</li>
 						<li>VP8 is typically the default video codec, but using &codec=vp9 or &codec=h264 as a URL in OBS can help to reduce corrupted video puke issues.</li>
 						<li>&stereo=2 can be added to guests to turn off audio effects, such as echo cancellation and noise-reduction.</li>
-						<li>https://invite.cam is a free service provided that can help obfuscuate the URL parameters of an invite link given to guests.</li>
+						<li>https://in. is a free service provider.</li>
 						<li>Adding &showonly=SOME_OBS_VIRTUALCAM to the guest invite links allows for only a single video to be seen by the guests; this can be output of the OBS Virtual Camera for example</li>
 						<br />
 						
@@ -1325,7 +1325,7 @@
 						  <input type="checkbox" data-param="" id="obfuscate_director_1" onchange="updateLink(1,this);">
 						  <span class="slider"></span>
 						</label>
-						<span data-translate="obfuscate-link">Obfuscate with Invite.cam</span>
+						<span data-translate="obfuscate-link">Obfuscate with Inv.com</span>
 					</div>
 				</div>
 			
@@ -2599,9 +2599,9 @@
 		<script>
 		
 			if (window.location.hostname.indexOf("www.obs.ninja") == 0) {
-				window.location = window.location.href.replace("www.obs.ninja","obs.ninja"); // the session.salt is domain specific; let's consolidate www as a result.
+				window.location = window.location.href.replace("www.link.studiovox.it","link.studiovox.it"); // the session.salt is domain specific; let's consolidate www as a result.
 			} else if (window.location.hostname.indexOf("www.vdo.ninja") == 0) {
-				window.location = window.location.href.replace("www.vdo.ninja","vdo.ninja"); // the session.salt is domain specific; let's consolidate www as a result.
+				window.location = window.location.href.replace("www.live.studiovox.it","live.studiovox.it"); // the session.salt is domain specific; let's consolidate www as a result.
 			} else if (("isSecureContext" in window) && (window.isSecureContext===false)){
 				console.error(" * Warning *\n\n - This site should be run in a secure context (https).\n - Please ensure all links, iframes, and parent windows are using SSL.\n - The webcam and other media devices may not be accessible while insecure.\n - WHEP playback and some other features might still function.");
 			}
@@ -2741,7 +2741,7 @@
 			 session.GDRIVE_CLIENT_ID = "624877431974-o8d1dcrvti4jn7m5b6tfmp71fteov05a.apps.googleusercontent.com"; // get your own id/key from Google Cloud
 			 session.GDRIVE_API_KEY = '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'; // lets you upload to google drive if self hosting.
 			
-			// session.decrypted = session.decodeInvite("U2FsdGVkX1+d58DFIHoO3EQZSuX86ch4PqW2ouztnJ0="); // get a code from invite.cam
+			// session.decrypted = session.decodeInvite("U2FsdGVkX1+d58DFIHoO3EQZSuX86ch4PqW2ouztnJ0="); // get a code
 			
 		</script>
 		<script type="text/javascript" crossorigin="anonymous" id="lib-js" src="./lib.js?ver=1154"></script>
