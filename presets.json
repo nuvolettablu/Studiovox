@@ -11,7 +11,7 @@
 "studiolink2": "?dir=studiovox&sd&q=1&audiocodec=red&oab=48&al=20&ac=1&ls=StudioVOX&codec=vp9&fr=25&mvb=1200&noscaling&hint=motion&recordfolder=auphonic&proaudio&audiobitrate=128&od=speaker_a_daw_a_virtual_&ad=daw_a_speaker_a_virtual_&vd=usb_video_534d_2109_",
 "clientlink": "?r=studiovox&tips&controls=0&audiocodec=opus&oab=16&al=20&ag=0&ec=1&dn=1&cb=0&bc&clear&showlist=1&ac=1&ls=Client&hidehome&hh&np&miconly",
 "clientlink2": "?r=studiovox&tips&controls=0&audiocodec=opus&oab=16&al=20&ag=0&ec=1&dn=1&cb=0&bc&clear&showlist=1&ac=1&ls=Client&hidehome&hh&np&miconly&meshcast",
-"testspeaker": "?r=studiovox&hash=7ed3&tips&controls=0&audiocodec=red&oab=128&al=20&audiohint=music&codec=vp9&mvb=600&proaudio&q=2&hidetranslate&np&cb=0&hidehome&bc&hh&clear&showlist=0&l=Speaker&miconly&meter&mono",
-"teststudio": "?dir=studiovox&password=1234567890&sd&q=1&audiocodec=opus&oab=96&proaudio&al=20&ls=StudioVOX&codec=vp9&fr=25&mvb=1200&noscaling&hint=motion&recordfolder=auphonic&proaudio&audiobitrate=128&od=speaker_a_daw_a_virtual_&ad=daw_a_speaker_a_virtual_&vd=usb_video_534d_2109_&mono",
+"testspeaker": "?r=studiovox&hash=7ed3&tips&controls=0&audiocodec=red&oab=128&al=20&audiohint=music&codec=vp9&mvb=600&proaudio&q=2&hidetranslate&np&cb=0&hidehome&bc&hh&clear&showlist=0&l=Speaker&miconly&meter",
+"teststudio": "?dir=studiovox&password=1234567890&sd&q=1&audiocodec=opus&oab=96&proaudio&al=20&ls=StudioVOX&codec=vp9&fr=25&mvb=1200&noscaling&hint=motion&recordfolder=auphonic&od=speaker_a_daw_a_virtual_&ad=daw_a_speaker_a_virtual_&vd=usb_video_534d_2109_",
 "speakerlink": "?r=studiovox&tips&controls=0&audiocodec=red&oab=128&al=20&audiohint=music&codec=vp9&mvb=600&ag=0&ec=0&dn=0&q=2&hidetranslate&np&cb=0&hidehome&bc&hh&clear&showlist=0&ac=1&miconly"
 }
